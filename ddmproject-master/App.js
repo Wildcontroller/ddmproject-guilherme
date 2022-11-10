@@ -14,7 +14,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Home from './screens/Home';
 import About from './screens/About';
-import Feed from './screens/Feed';
+import Feed from './screens/Game';
 import {Provider} from 'react-redux';
 import {store} from './store';
 
@@ -39,6 +39,8 @@ const App: () => Node = () => {
             options={{title: 'Pokecard'}}
           />
           <Stack.Screen name="About" component={About} />
+          <Stack.Screen name="Game" component={Game} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
