@@ -1,325 +1,238 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import {StyleSheet, Text, View, SafeAreaView, Dimensions} from 'react-native'
 
-function Game() {
-  return (
-    <Text>Feed</Text>
-  )
-}
-class JogodoGalo extends React.Component {
-  render() {
-    return (
-      <div className="Jogo-do-Galo">
-        <h1>Gmae List for {this.props.name}</h1>
-        <ul>
-          <li>Instagram</li>
-          <li>WhatsApp</li>
-          <li>Oculus</li>
-        </ul>
-      </div>
-    );
-  }
-}
+const windowWidth = Dimensions.get('window').width;
+const App = () => {
+    const [active_player, setActive_player] = useState("O")
+    const [markers, setMarKers] = useState([
+        null,null,null,null,null,null,null,null,null
+    ])
 
-return React.createElement('div', {className: 'Jogo-do-Galo'},
-  React.createElement('h1', /* ... h1 children ... */),
-  React.createElement('ul', /* ... ul children ... */)
-);
-
-class Tábua extends React.Component {
-  rendercaixa(i) {
-    return <Square value={i} />;
-  }
-}
-
-class quadro extends React.Component {
-  render() {
-    return (
-      <botao className="caixa">
-        {this.props.value}
-      </botao>
-    );
-  }
-}
-
-class caixa extends React.Component {
-  render() {
-    return (
-      <botao className="square" onClick={function() { console.log('click'); }}>
-        {this.props.value}
-      </botao>
-    );
-  }
-}
-
-class caixa extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
-  render() {
-    return (
-      <botao className="caixa" onClick={() => console.log('click')}>
-        {this.props.value}
-      </botao>
-    );
-  }
-}
-
-class quadro extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
-  render() {
-    return (
-      <botao
-        className="caixa"
-        onClick={() => this.setState({value: 'X'})}
-      >
-        {this.state.value}
-      </botao>
-    );
-  }
-  
-}
-class quadro extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      caixas: Array(9).fill(null),
-    };
-  }
-
-  rendercaixa(i) {
-    return <Square value={i} />;
-  }
-
-  [
-    'O', null, 'X',
-    'X', 'X', 'O',
-    'O', null, null,
-  ]
-  rendercaixa(i) {
-    return <Square value={i} />;
-  }
-
-  rendercaixa(i) {
-    return <caixa value={this.state.squares[i]} />;
-  }
-
-  rendercaixa(i) {
-    return (
-      <Square
-        value={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
-      />
-    );
-  }
-
-  class caixa extends React.Component {
-    render() {
-      return (
-        <botao
-          className="square"
-          onClick={() => this.props.onClick()}
-        >
-          {this.props.value}
-        </botao>
-      );
-    }
-  }
-
-  class quadro extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        caixas: Array(9).fill(null),
-      };
-    }
-  
-    handleClick(i) {
-      const caixas = this.state.caixas.slice();
-      caixas[i] = 'X';
-      this.setState({squares: squares});
-    }
-  
-    rendercaixa(i) {
-      return (
-        <caixa
-          value={this.state.squares[i]}
-          onClick={() => this.handleClick(i)}
-        />
-      );
-    }
-  
-    render() {
-      const status = 'Next player: X';
-  
-      return (
-        <div>
-          <div className="status">{status}</div>
-          <div className="Estado do Quadro">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="Estado do Quadro">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="Estado do Quadro">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
-        </div>
-      );
-    }
-  }
-  var jogador = {pontuacao: 1, nome: 'Joao'};
-jogador.pontuacao = 2;
-
-function caixas(props) {
-  return (
-    <botao className="square" onClick={props.onClick}>
-      {props.value}
-    </botao>
-  );
-}
-
-class quadro extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      caixas: Array(9).fill(null),
-      xIsNext: true,
-    };
-  }
-
-  handleClick(i) {
-    const caixas = this.state.caixas.slice();
-    caixas[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      caixas: caixas,
-      xIsNext: !this.state.xIsNext,
-    });
-  }
-
-  render() {
-    const status = 'Proximo jogador: ' + (this.state.xIsNext ? 'X' : 'O');
-
-  }
-
-  class Board extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        squares: Array(9).fill(null),
-        xIsNext: true,
-      };
-    }
-  
-    handleClick(i) {
-      const squares = this.state.squares.slice();
-      squares[i] = this.state.xIsNext ? 'X' : 'O';
-      this.setState({
-        squares: squares,
-        xIsNext: !this.state.xIsNext,
-      });
-    }
-  
-    renderSquare(i) {
-      return (
-        <Square
-          value={this.state.squares[i]}
-          onClick={() => this.handleClick(i)}
-        />
-      );
-    }
-  
-    render() {
-      const status = 'Proximo Jogador: ' + (this.state.xIsNext ? 'X' : 'O');
-  
-      return (
-        <div>
-          <div className="status">{status}</div>
-          <div className="Estado do Quadro">
-            {this.rendercaixa(0)}
-            {this.rendercaixa(1)}
-            {this.rendercaixa(2)}
-          </div>
-          <div className="Estado do Quadro">
-            {this.rendercaixa(3)}
-            {this.rendercaixa(4)}
-            {this.rendercaixa(5)}
-          </div>
-          <div className="Estado do Quadro">
-            {this.rendercaixa(6)}
-            {this.rendercaixa(7)}
-            {this.rendercaixa(8)}
-          </div>
-        </div>
-      );
-    }
-  }
-
-  function calculateWinner(caixas) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-      if (caixas[a] && caixas[a] === caixas[b] && caixas[a] === caixas[c]) {
-        return caixas[a];
-      }
-    }
-    return null;
-  }
-
-  render() {
-    const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
-
-    return (
-      handleClick(i) {
-        const squares = this.state.squares.slice();
-        if (calculateWinner(squares) || squares[i]) {
-          return;
+    const markPosition = (position) => {
+        if(!markers[position]){
+            let temp = [...markers]
+        temp[position] = active_player
+        setMarKers(temp)
+        if(active_player === "X"){
+            setActive_player("O")
+        }else{
+            setActive_player("X")
         }
-        squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
-          squares: squares,
-          xIsNext: !this.state.xIsNext,
-        });
       }
     }
 
+    const resetMarkers = () => {
+        setMarkers([
+            null,null,null,null,null,null,null,null,null
+        ])
+    }
 
+    const calculateWinner = (squares) => {
+        const lines = [
+            [0,1,2]
+            [3,4,5]
+            [0,1,2]
+            [6,7,8]
+            [0,3,6]
+            [1,4,7]
+            [2,5,8]
+            [0,4,8]
+            [2,4,6]
+        ];
+        for(let i = 0;i < lines.length;i++){
+            const [a,b,c] = lines[i];
+            if(squares[a] && squares[a] === squares[b] && squares[a] && squares[c]){
+                return squares[a];
+            }
+        }
+        return null;
+    }
 
+    useEffect(() => {
+        const winner = calculateWinner(markers);
+        if(winner === "X"){
+            alert("Player  X Won!")
+            resetMarkers()
+        }else if(winner === "O"){
+            alert("Player O Won!")
+            resetMarkers()
+        }
 
-// Now player is {score: 2, name: 'Gonçalo'}
+    },[markers])
 
+    return(
+        <SafeAreaView style={style.body}>
+            <View style={[styles.playerInfo, {backgroundColor: active_player === "X"?'#007FF4':'#F40075'}]}>
+                <Text style={styles.playerTxt}>player X's turn</Text>
+            </View>
+            <View style={style.mainContainer}>
+                <Pressable style = {styles.cell_top_left} onPress={() => markPosition(0)}>
+                {markers[0]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[0]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_top_mid} onPress={() => markPosition(1)}>
+                {markers[1]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[1]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_top_right} onPress={() => markPosition(2)}>
+                {markers[2]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[2]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_mid_left} onPress={() => markPosition(3)}>
+                {markers[3]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[3]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_mid_mid} onPress={() => markPosition(4)}>
+                {markers[4]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[4]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_mid_right} onPress={() => markPosition(5)}>
+                {markers[5]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[5]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_bottom_left} onPress={() => markPosition(6)}>
+                {markers[6]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[6]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_bottom_mid} onPress={() => markPosition(7)}>
+                {markers[7]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[7]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                
+                <Pressable style = {styles.cell_bottom_right} onPress={() => markPosition(8)}>
+                {markers[8]=== "X" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                {markers[8]=== "O" && <Image source={require('./assets/img(cross.png')} style={styles.icon}/>}
+                </Pressable>
+                <Pressable style = {styles.cancelBTN} onPress ={resetMarkers}>
+                <Image source={require('./assets/img/replay.png')} style ={style.cancelIcon}/>
+                </Pressable>
+                </View>
+            </SafeAreaView>
+    )
+}
 
+export default App
+const styles = StyleSheet.create({
+    body:{
+        flex: 1,
+        background: "#fff"
+    },
+    playerInfo:{
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        marginHorizontal: 20,
+        paddingVertical: 20,
+        marginTop: 30
+    },
+    playerTxt:{
+        fontSize: 20,
+        fontHeight: "700",
+        letterSpacing: 1.2,
+        color: '#fff'
+    },
+    mainContainer:{
+        flexDirection: "row",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        marginTop: 60
 
+    },
+    cell_top_left:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderRightWidth: 6,
+        borderBottomWidth: 6,
+    },
+    cell_top_mid:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderBottomWidth: 6,
+    },
+    cell_top_right:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderBottomWidth: 6,
+        borderLeftWidth: 6,
+    },
+    cell_mid_left:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderRightWidth: 6,
+    },
+    cell_mid_mid:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+    },
+    cell_mid_right:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderLeftWidth: 6,
+    },
+    cell_bottom_left:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderWidthRight: 6,
+        borderBottomWidth: 6,
+    },
+    cell_bottom_mid:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderTopWidth: 6,
+    },
+    cell_bottom_right:{
+        width: windowWidth/3.2,
+        height: WindowWidth/3.2,
+        flexDirection: "row",
+        justifycontent: "center",
+        alignItems: "center",
+        borderLeftWidth: 6,
+        borderTopWidth: 6,
+    },
+    icon:{
+        height: 62,
+        width: 62,
+    },
 
-export default Game;
+    cancleBTN:{
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        
+    },
+    cancelation:{
+        height: 80,
+        width: 80,
+    }
+})
